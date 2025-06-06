@@ -1,0 +1,40 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <span class="material-icons icon">spa</span>
+    <h2>SerenaIA – Seu espaço de escuta e acolhimento</h2>
+  </div>
+
+  <div class="chat-box" #chatScroll>
+    <div *ngFor="let msg of mensagens" [ngClass]="msg.autor" class="fade-in">
+      <div class="message">
+        <span class="material-icons icon-small">
+          {{ msg.autor === 'usuario' ? 'person' : 'spa' }}
+        </span>
+        <div class="text">
+          <span [innerHTML]="formatarTexto(msg.texto)"></span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="carregando" class="serena typing fade-in">
+      Serena está digitando...
+    </div>
+  </div>
+
+  <form (submit)="enviar(); $event.preventDefault()" class="input-form">
+    <input
+      [(ngModel)]="entradaUsuario"
+      name="mensagem"
+      placeholder="Como você está se sentindo hoje?"
+      autocomplete="off"
+      required
+    />
+    <button type="submit" aria-label="Enviar">
+      <span class="material-icons">send</span>
+    </button>
+  </form>
+
+  <small class="disclaimer">
+    SerenaIA é um espaço seguro. Mas lembre-se: buscar ajuda profissional é essencial. 💙
+  </small>
+</div>

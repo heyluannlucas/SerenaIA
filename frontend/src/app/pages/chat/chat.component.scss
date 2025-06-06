@@ -1,0 +1,133 @@
+.chat-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #333;
+
+  .chat-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+
+    .icon {
+      color: #6db2b1;
+      font-size: 24px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+
+  .chat-box {
+    border: 1px solid #e9e9e9;
+    padding: 1rem;
+    max-height: 400px;
+    overflow-y: auto;
+    border-radius: 10px;
+    background: #fdfdfd;
+    margin-bottom: 1rem;
+    scroll-behavior: smooth;
+
+    .usuario, .serena {
+      margin: 0.75rem 0;
+
+      .message {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+
+        .icon-small {
+          font-size: 18px;
+          color: #aaa;
+        }
+
+        .text {
+          padding: 0.75rem 1rem;
+          border-radius: 16px;
+          max-width: 75%;
+          font-size: 0.95rem;
+          line-height: 1.4;
+          word-wrap: break-word;
+        }
+      }
+    }
+
+    .usuario .text {
+      background-color: #e6f4ea;
+      margin-left: auto;
+    }
+
+    .serena .text {
+      background-color: #edf7fa;
+    }
+
+    .typing {
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #888;
+      padding-left: 2rem;
+    }
+  }
+
+  .input-form {
+    display: flex;
+    gap: 0.5rem;
+
+    input {
+      flex: 1;
+      padding: 0.7rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 0 1rem;
+      background-color: #6db2b1;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background-color: #4a9898;
+      }
+
+      .material-icons {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .disclaimer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    color: #777;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
