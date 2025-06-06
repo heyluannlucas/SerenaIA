@@ -42,9 +42,9 @@ Ela reforça, com sensibilidade, que:
   - Encaminhamento sutil à ajuda profissional quando necessário
 
 ---
+## 🧩 Componentes do Sistema
 
-## Componentes do Sistema
-
+```text
 Usuário (CLI ou Web)
        │
        ▼
@@ -57,7 +57,7 @@ responder.py
        ├──────────────► OpenRouter API
        │                    │
        │                    ▼
-       └──────────────► odelo: deepseek-chat-v3-0324:free
+       └──────────────► Modelo: deepseek-chat-v3-0324:free
                              │
                              ▼
 Geração de resposta empática (SerenaIA)
@@ -65,6 +65,10 @@ Geração de resposta empática (SerenaIA)
        ▼
 Retorno ao usuário
 
+       │
+       ▼
+Retorno ao usuário
+```
 
 
 ## Observações para a banca
