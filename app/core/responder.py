@@ -1,22 +1,18 @@
 from dotenv import load_dotenv
 import os
-load_dotenv()
-API_KEY = os.getenv("OPENROUTER_API_KEY")
 import requests
 
+load_dotenv()
+API_KEY = os.getenv("OPENROUTER_API_KEY")
 
-# Histórico da conversa
 conversa = []
 
 def gerar_resposta(entrada_usuario):
-    # Adiciona a entrada do usuário ao histórico
     conversa.append({"role": "user", "content": entrada_usuario})
 
-    # Prepara até 6 mensagens anteriores para o contexto
     historico = conversa[-6:]
 
     try:
-        # Requisição para a API do OpenRouter
         response = requests.post(
             "https://openrouter.ai/api/v1/chat/completions",
             headers={
@@ -38,17 +34,15 @@ def gerar_resposta(entrada_usuario):
                 }
             ] + historico,
                 "temperature": 0.7,
-                "max_tokens": 200  # Ajuste conforme necessário
+                "max_tokens": 200 
             }
         )
 
-        # Verifica o status da resposta
         if response.status_code != 200:
             print(f"[ERRO {response.status_code}] Falha na API:")
             print(response.text)
             return "Desculpe, houve um erro ao se comunicar com a IA."
 
-        # Processa a resposta
         data = response.json()
 
         if "choices" not in data:
@@ -56,10 +50,8 @@ def gerar_resposta(entrada_usuario):
             print(data)
             return "Desculpe, não consegui entender a resposta da IA."
 
-        # Extrai o conteúdo da resposta
         resposta = data["choices"][0]["message"]["content"]
 
-        # Adiciona a resposta ao histórico
         conversa.append({"role": "assistant", "content": resposta})
 
         return resposta
