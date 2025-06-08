@@ -5,30 +5,36 @@
   </div>
 
   <div class="chat-box" #chatScroll>
-    <div *ngFor="let msg of mensagens" [ngClass]="msg.autor" class="fade-in">
+    <div *ngFor="let msg of mensagens" [ngClass]="msg.autor" class="fade-in message-row">
       <div class="message">
-        <span class="material-icons icon-small">
-          {{ msg.autor === 'usuario' ? 'person' : 'spa' }}
-        </span>
-        <div class="text">
-          <span [innerHTML]="formatarTexto(msg.texto)"></span>
-        </div>
+        <ng-container *ngIf="msg.autor === 'serena'">
+          <span class="material-icons icon-small">spa</span>
+          <div class="text" [innerHTML]="formatarTexto(msg.texto)"></div>
+        </ng-container>
+
+        <ng-container *ngIf="msg.autor === 'usuario'">
+          <div class="text" [innerHTML]="formatarTexto(msg.texto)"></div>
+          <span class="material-icons icon-small">person</span>
+        </ng-container>
       </div>
     </div>
 
     <div *ngIf="carregando" class="serena typing fade-in">
-      Serena está digitando...
+      <div class="dots">
+        <span></span><span></span><span></span>
+      </div>
     </div>
   </div>
 
-  <form (submit)="enviar(); $event.preventDefault()" class="input-form">
-    <input
+  <form class="input-form" (submit)="enviar(); $event.preventDefault()">
+    <textarea
       [(ngModel)]="entradaUsuario"
       name="mensagem"
       placeholder="Como você está se sentindo hoje?"
       autocomplete="off"
-      required
-    />
+      rows="1"
+      (keydown)="verificaEnter($event)"
+    ></textarea>
     <button type="submit" aria-label="Enviar">
       <span class="material-icons">send</span>
     </button>
@@ -37,4 +43,11 @@
   <small class="disclaimer">
     SerenaIA é um espaço seguro. Mas lembre-se: buscar ajuda profissional é essencial. 💙
   </small>
+
+  <div class="help-links">
+    <p>Precisa de ajuda imediata?</p>
+    <a href="https://www.cvv.org.br/" target="_blank" rel="noopener">
+      Acesse o CVV – Apoio emocional 24h
+    </a>
+  </div>
 </div>

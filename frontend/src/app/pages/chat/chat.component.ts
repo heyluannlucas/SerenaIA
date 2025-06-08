@@ -36,6 +36,10 @@ export class ChatComponent {
     this.chatService.enviarMensagem(mensagem).subscribe({
       next: (res) => {
         this.mensagens.push({ autor: 'serena', texto: res.resposta });
+
+        const audio = new Audio('assets/sounds/ding.mp3');
+        audio.play();
+
         this.carregando = false;
         this.scrollToBottom();
       },
@@ -66,5 +70,12 @@ export class ChatComponent {
         });
       }
     }, 100);
+  }
+
+  verificaEnter(event: KeyboardEvent) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      this.enviar();
+    }
   }
 }

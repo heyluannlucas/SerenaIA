@@ -1,59 +1,78 @@
-# Frontend
+# Documentação – Primeira Entrega: SerenaIA
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
+## Objetivo do Projeto
 
-## Development server
+O projeto SerenaIA tem como finalidade criar uma **assistente virtual empática**, capaz de manter uma conversa acolhedora com usuários que estejam buscando um espaço de escuta e conforto emocional.
 
-To start a local development server, run:
+> **Importante:** SerenaIA **não é um substituto para acompanhamento psicológico ou psiquiátrico profissional**. Ela atua como uma ferramenta de acolhimento inicial — um ponto de escuta e apoio para quem busca um momento de diálogo respeitoso.
 
-```bash
-ng serve
+---
+
+## Por que criar a SerenaIA?
+
+Em momentos de angústia, ansiedade ou solidão, muitas pessoas não sabem com quem conversar ou se sentem constrangidas em procurar ajuda de imediato. SerenaIA foi pensada como:
+
+- Uma **ponte de acolhimento inicial**  
+- Uma **companhia virtual** para escutar, acolher e oferecer mensagens positivas  
+- Um **instrumento complementar**, nunca substitutivo, ao cuidado com a saúde mental
+
+---
+
+## Sobre SerenaIA
+
+- **Nome:** SerenaIA  
+- **Personalidade:** Calma, gentil, compreensiva  
+- **Tom:** Acolhedor, respeitoso, empático  
+- **Função:** Escutar e responder de forma emocionalmente inteligente
+
+Ela reforça, com sensibilidade, que:
+
+> “Conversar comigo pode aliviar um pouco, mas buscar apoio de um psicólogo ou outro profissional de saúde mental é sempre um passo muito importante.”
+
+---
+
+## Como funciona
+
+- Interface via **linha de comando** e **API REST (Flask)**
+- A geração de respostas é feita por IA com base no modelo **`deepseek/deepseek-chat-v3-0324:free`** via OpenRouter
+- A IA recebe contexto das últimas mensagens e responde de forma coerente e acolhedora
+- As mensagens são preparadas com instruções explícitas para garantir:
+  - Empatia  
+  - Clareza sobre seu papel como apoio complementar  
+  - Encaminhamento sutil à ajuda profissional quando necessário
+
+---
+## 🧩 Componentes do Sistema
+
+```text
+Usuário (CLI ou Web)
+       │
+       ▼
+API Flask (/chat)
+       │
+       ▼
+responder.py
+   (Monta prompt + contexto)
+       │
+       ├──────────────► OpenRouter API
+       │                    │
+       │                    ▼
+       └──────────────► Modelo: deepseek-chat-v3-0324:free
+                             │
+                             ▼
+Geração de resposta empática (SerenaIA)
+       │
+       ▼
+Retorno ao usuário
+
+       │
+       ▼
+Retorno ao usuário
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+## Observações para a banca
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- SerenaIA **não faz diagnósticos, nem dá conselhos clínicos**
+- Toda a experiência foi desenhada com responsabilidade social e ética
+- O projeto pode ser expandido com memória por sessão, logs e interface gráfica
